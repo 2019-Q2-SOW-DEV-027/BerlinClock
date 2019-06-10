@@ -45,35 +45,30 @@ let ClockPresenter = function(digitalTime, clockView) {
     };
 
     upperMinutesRow = function(){
-        let upperMinutesRow = "";
-        let numberOfLampsToBeOn = parseInt(digitalTime.minutes / 5);
-        let numberOfLampsToBeOff = 11 - numberOfLampsToBeOn;
-        for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            if((lamp+1) % 3 === 0){
-                upperMinutesRow += LAMP.RED;
-            } else {
-                upperMinutesRow += LAMP.YELLOW;
-            }
-        }
-        for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
-            upperMinutesRow += LAMP.OFF;
-        }
-
+        let upperMinutesRow = upperRow(11, numberOfFive(digitalTime.minutes), LAMP.YELLOW);
+        upperMinutesRow = upperMinutesRow.replace(/YYY/g, "YYR");
         return upperMinutesRow;
     };
 
     upperHoursRow = function(){
-        let upperHoursRow = "";
-        let numberOfLampsToBeOn = parseInt(digitalTime.hours / 5);
-        let numberOfLampsToBeOff = 4 - numberOfLampsToBeOn;
+        return upperRow(4, numberOfFive(digitalTime.hours), LAMP.RED);
+    };
+
+    numberOfFive = function(time){
+        return parseInt(time / 5);
+    };
+
+    upperRow = function(totalLamps, numberOfLampsToBeOn, lampColor){
+        let upperRow = "";
+        let numberOfLampsToBeOff = totalLamps - numberOfLampsToBeOn;
         for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            upperHoursRow += LAMP.RED;
+            upperRow += lampColor;
         }
         for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
-            upperHoursRow += LAMP.OFF;
+            upperRow += LAMP.OFF;
         }
 
-        return upperHoursRow;
+        return upperRow;
     };
 };
 
