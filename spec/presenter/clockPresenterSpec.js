@@ -61,6 +61,16 @@ describe("Berlin Clock Presenter", function () {
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
                 expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YYOO");
             });
+
+            it("should display YYYO at minute 38", function () {
+                digitalTime.minutes = 38;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YYYO");
+            });
         });
     });
 });

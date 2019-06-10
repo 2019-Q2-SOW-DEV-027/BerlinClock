@@ -16,8 +16,10 @@ let ClockPresenter = function(digitalTime, clockView) {
             return "OOOO";
         } else if(digitalTime.minutes % 5 === 1){
             return "YOOO";
-        } else {
+        } else if(digitalTime.minutes % 5 === 2){
             return "YYOO";
+        } else {
+            return "YYYO";
         }
     };
 };
