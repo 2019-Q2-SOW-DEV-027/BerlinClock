@@ -15,4 +15,13 @@ describe("Digital Time Model", function () {
 
         expect(digitalTime.isInvalid()).toBe(true);
     });
+
+    it("should notify error when seconds is invalid", function () {
+        let digitalTime = new DigitalTime();
+        digitalTime.minutes = 50;
+        digitalTime.hours = 10;
+        digitalTime.seconds = "";
+
+        expect(digitalTime.isInvalid()).toBe(true);
+    });
 });
