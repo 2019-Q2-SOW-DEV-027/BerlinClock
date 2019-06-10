@@ -11,7 +11,7 @@ describe("Berlin Clock Presenter", function () {
         };
         clockView.displayError = function(){};
         spyOn(clockView, "displayError");
-        clockPresenter = new ClockPresenter(digitalTime, clockView);
+        initializeClockPresenter(digitalTime, clockView);
 
         clockPresenter.convertToBerlinTime();
 
@@ -33,212 +33,224 @@ describe("Berlin Clock Presenter", function () {
         describe("LOWER MINUTES ROW", function(){
 
             it("should display OOOO at minute 0", function () {
-                digitalTime.minutes = 0;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 0);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","OOOO"]);
+                expect(displayLampsCalledWith(0)).toEqual(["lowerMinutesRow","OOOO"]);
             });
 
             it("should display YOOO at minute 36", function () {
-                digitalTime.minutes = 36;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 36);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YOOO"]);
+                expect(displayLampsCalledWith(0)).toEqual(["lowerMinutesRow","YOOO"]);
             });
 
             it("should display YYOO at minute 52", function () {
-                digitalTime.minutes = 52;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 52);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYOO"]);
+                expect(displayLampsCalledWith(0)).toEqual(["lowerMinutesRow","YYOO"]);
             });
 
             it("should display YYYO at minute 38", function () {
-                digitalTime.minutes = 38;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 38);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYYO"]);
+                expect(displayLampsCalledWith(0)).toEqual(["lowerMinutesRow","YYYO"]);
             });
 
             it("should display YYYY at minute 14", function () {
-                digitalTime.minutes = 14;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 14);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYYY"]);
+                expect(displayLampsCalledWith(0)).toEqual(["lowerMinutesRow","YYYY"]);
             });
         });
 
         describe("UPPER MINUTES ROW", function(){
 
             it("should display OOOOOOOOOOO at minute 0", function(){
-                digitalTime.minutes = 0;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 0);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","OOOOOOOOOOO"]);
+                expect(displayLampsCalledWith(1)).toEqual(["upperMinutesRow","OOOOOOOOOOO"]);
             });
 
             it("should display YYOOOOOOOOO at minute 10", function(){
-                digitalTime.minutes = 10;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 10);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYOOOOOOOOO"]);
+                expect(displayLampsCalledWith(1)).toEqual(["upperMinutesRow","YYOOOOOOOOO"]);
             });
 
             it("should display YYROOOOOOO at minute 15", function(){
-                digitalTime.minutes = 15;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 15);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYROOOOOOOO"]);
+                expect(displayLampsCalledWith(1)).toEqual(["upperMinutesRow","YYROOOOOOOO"]);
             });
 
             it("should display YYRYYRYOOO at minute 35", function(){
-                digitalTime.minutes = 35;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 35);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYRYYRYOOOO"]);
+                expect(displayLampsCalledWith(1)).toEqual(["upperMinutesRow","YYRYYRYOOOO"]);
             });
 
             it("should display YYRYYRYYRYY at minute 55", function(){
-                digitalTime.minutes = 55;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("minutes", 55);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYRYYRYYRYY"]);
+                expect(displayLampsCalledWith(1)).toEqual(["upperMinutesRow","YYRYYRYYRYY"]);
             });
         });
 
         describe("LOWER HOURS ROW", function(){
 
             it("should display OOOO at hour 5", function(){
-                digitalTime.hours = 05;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("hours", 05);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","OOOO"]);
+                expect(displayLampsCalledWith(2)).toEqual(["lowerHoursRow","OOOO"]);
             });
 
             it("should display ROOO at hour 21", function(){
-                digitalTime.hours = 21;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("hours", 21);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","ROOO"]);
+                expect(displayLampsCalledWith(2)).toEqual(["lowerHoursRow","ROOO"]);
             });
 
             it("should display RROO at hour 12", function(){
-                digitalTime.hours = 12;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("hours", 12);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","RROO"]);
+                expect(displayLampsCalledWith(2)).toEqual(["lowerHoursRow","RROO"]);
             });
         });
 
         describe("UPPER HOURS ROW", function(){
 
             it("should display OOOO at hour 0", function(){
-                digitalTime.hours = 0;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("hours", 0);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(3)).toEqual(["upperHoursRow","OOOO"]);
+                expect(displayLampsCalledWith(3)).toEqual(["upperHoursRow","OOOO"]);
             });
 
             it("should display RROO at hour 11", function(){
-                digitalTime.hours = 11;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("hours", 11);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(3)).toEqual(["upperHoursRow","RROO"]);
+                expect(displayLampsCalledWith(3)).toEqual(["upperHoursRow","RROO"]);
             });
 
             it("should display RRRO at hour 15", function(){
-                digitalTime.hours = 15;
-                clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("hours", 15);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(3)).toEqual(["upperHoursRow","RRRO"]);
+                expect(displayLampsCalledWith(3)).toEqual(["upperHoursRow","RRRO"]);
             });
         });
 
         describe("SECONDS LAMP", function(){
 
             it("should display Y at second 18", function(){
-                digitalTime.seconds = 18;
-                let clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("seconds", 18);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","Y"]);
+                expect(displayLampsCalledWith(4)).toEqual(["secondsLamp","Y"]);
             });
 
             it("should display O at second 47", function(){
-                digitalTime.seconds = 47;
-                let clockPresenter = new ClockPresenter(digitalTime, clockView);
+                setDigitalTime("seconds", 47);
+                initializeClockPresenter(digitalTime, clockView);
 
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","O"]);
+                expect(displayLampsCalledWith(4)).toEqual(["secondsLamp","O"]);
             });
         });
 
         it("should display complete berlin clock", function(){
-            digitalTime.minutes = 32;
-            digitalTime.seconds = 10;
-            digitalTime.hours = 15;
-            let clockPresenter = new ClockPresenter(digitalTime, clockView);
+            setDigitalTime("minutes", 32);
+            setDigitalTime("seconds", 10);
+            setDigitalTime("hours", 15);
+            initializeClockPresenter(digitalTime, clockView);
 
             clockPresenter.convertToBerlinTime();
 
             expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-            expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYOO"]);
-            expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYRYYROOOOO"]);
-            expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","OOOO"]);
-            expect(clockView.displayLamps.calls.argsFor(3)).toEqual(["upperHoursRow","RRRO"]);
-            expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","Y"]);
+            expect(displayLampsCalledWith(0)).toEqual(["lowerMinutesRow","YYOO"]);
+            expect(displayLampsCalledWith(1)).toEqual(["upperMinutesRow","YYRYYROOOOO"]);
+            expect(displayLampsCalledWith(2)).toEqual(["lowerHoursRow","OOOO"]);
+            expect(displayLampsCalledWith(3)).toEqual(["upperHoursRow","RRRO"]);
+            expect(displayLampsCalledWith(4)).toEqual(["secondsLamp","Y"]);
         });
     });
+
+    function displayLampsCalledWith(callIndex){
+        return clockView.displayLamps.calls.argsFor(callIndex);
+    }
+
+    function initializeClockPresenter(digitalTime, clockView){
+        clockPresenter = new ClockPresenter(digitalTime, clockView);
+    }
+
+    function setDigitalTime(time, value){
+        digitalTime[time] = value;
+    }
 });
