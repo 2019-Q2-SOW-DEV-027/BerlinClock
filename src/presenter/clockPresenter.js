@@ -46,14 +46,18 @@ let ClockPresenter = function(digitalTime, clockView) {
     rowOfLamps = function(totalLamps, numberOfLampsToBeOn, lampColor){
         let rowOfLamps = "";
         let numberOfLampsToBeOff = totalLamps - numberOfLampsToBeOn;
-        for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            rowOfLamps += lampColor;
-        }
-        for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
-            rowOfLamps += LAMP.OFF;
-        }
+        rowOfLamps += repeat(numberOfLampsToBeOn, lampColor);
+        rowOfLamps += repeat(numberOfLampsToBeOff, LAMP.OFF);
 
         return rowOfLamps;
+    };
+
+    repeat = function(numberOfLampsToBeRepeated, lamp){
+        let lamps = "";
+        for(let lampPosition = 0; lampPosition < numberOfLampsToBeRepeated; lampPosition++){
+            lamps += lamp;
+        }
+        return lamps;
     };
 
     secondsLamp = function(){
