@@ -1,0 +1,24 @@
+{
+  "name": "BerlinClock",
+  "version": "1.0.0",
+  "description": "Displays Berlin Time",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine",
+    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2019-Q2-SOW-DEV-027/BerlinClock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.3.1",
+    "jsdom": "^15.0.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
