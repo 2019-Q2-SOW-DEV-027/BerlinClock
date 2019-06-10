@@ -1,16 +1,24 @@
 let ClockView = function(){
     this.displayError = function(){
-        document.getElementById("error").innerHTML = "Invalid Time";
+        display("error", "Invalid Time");
     };
 
     this.displayCurrentTimeWithTitles = function(time){
-        document.getElementById("digitalTimeTitle").innerHTML = "Digital Time: ";
-        document.getElementById("currentTime").innerHTML = time.hours + ":" + time.minutes + ":" + time.seconds;
-        document.getElementById("berlinTimeTitle").innerHTML = "Berlin Time: ";
+        display("digitalTimeTitle",  "Digital Time: ");
+        display("currentTime", currentTime(time));
+        display("berlinTimeTitle", "Berlin Time: ");
     };
 
     this.displayLamps = function(row, lamps){
-        document.getElementById(row).innerHTML = lamps;
+        display(row, lamps);
+    };
+
+    display = function(element, value){
+        document.getElementById(element).innerHTML = value;
+    };
+
+    currentTime = function(time){
+        return time.hours + ":" + time.minutes + ":" + time.seconds;
     };
 };
 
