@@ -201,5 +201,18 @@ describe("Berlin Clock Presenter", function () {
                 expect(clockView.displayLamps.calls.argsFor(3)).toEqual(["upperHoursRow","RRRO"]);
             });
         });
+
+        describe("SECONDS LAMP", function(){
+
+            it("should display Y at second 18", function(){
+                digitalTime.seconds = 18;
+                let clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","Y"]);
+            });
+        });
     });
 });

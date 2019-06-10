@@ -5,7 +5,7 @@ let ClockView = function(){
 
     this.displayCurrentTimeWithTitles = function(time){
         document.getElementById("digitalTimeTitle").innerHTML = "Digital Time: ";
-        document.getElementById("currentTime").innerHTML = time.hours + ":" + time.minutes;
+        document.getElementById("currentTime").innerHTML = time.hours + ":" + time.minutes + ":" + time.seconds;
         document.getElementById("berlinTimeTitle").innerHTML = "Berlin Time: ";
     };
 

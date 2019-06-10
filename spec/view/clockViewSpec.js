@@ -21,13 +21,14 @@ describe("Berlin Clock View", function(){
         render("<!DOCTYPE html><p id='currentTime'></p><span id='digitalTimeTitle'></span><p id='berlinTimeTitle'></p>");
         let time = {
             "minutes": 15,
-            "hours": 6
+            "hours": 6,
+            "seconds": 23
         };
 
         clockView.displayCurrentTimeWithTitles(time);
 
         expect(document.getElementById("digitalTimeTitle").innerHTML).toBe("Digital Time: ");
-        expect(document.getElementById("currentTime").innerHTML).toBe("6:15");
+        expect(document.getElementById("currentTime").innerHTML).toBe("6:15:23");
         expect(document.getElementById("berlinTimeTitle").innerHTML).toBe("Berlin Time: ");
     });
 
