@@ -135,5 +135,38 @@ describe("Berlin Clock Presenter", function () {
                 expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYRYYRYYRYY"]);
             });
         });
+
+        describe("LOWER HOURS ROW", function(){
+
+            it("should display OOOO at hour 5", function(){
+                digitalTime.hours = 05;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","OOOO"]);
+            });
+
+            it("should display ROOO at hour 21", function(){
+                digitalTime.hours = 21;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","ROOO"]);
+            });
+
+            it("should display RROO at hour 12", function(){
+                digitalTime.hours = 12;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","RROO"]);
+            });
+        });
     });
 });
