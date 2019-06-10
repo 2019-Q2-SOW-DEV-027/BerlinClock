@@ -20,55 +20,42 @@ let ClockPresenter = function(digitalTime, clockView) {
     };
 
     lowerMinutesRow = function(){
-        return lowerRow(moduloFive(digitalTime.minutes), LAMP.YELLOW);
+        return rowOfLamps(4, moduloFive(digitalTime.minutes), LAMP.YELLOW);
+    };
+
+    upperMinutesRow = function(){
+        let upperMinutesRow = rowOfLamps(11, numberOfFive(digitalTime.minutes), LAMP.YELLOW);
+        upperMinutesRow = upperMinutesRow.replace(/YYY/g, "YYR");
+        return upperMinutesRow;
     };
 
     lowerHoursRow = function(){
-        return lowerRow(moduloFive(digitalTime.hours), LAMP.RED);
+        return rowOfLamps(4, moduloFive(digitalTime.hours), LAMP.RED);
+    };
+
+    upperHoursRow = function(){
+        return rowOfLamps(4, numberOfFive(digitalTime.hours), LAMP.RED);
     };
 
     moduloFive = function(time){
         return time % 5;
     };
 
-    lowerRow = function(numberOfLampsToBeOn, lampColor){
-        let lowerRow = "";
-        let numberOfLampsToBeOff = 4 - numberOfLampsToBeOn;
-        for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            lowerRow += lampColor;
-        }
-        for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
-            lowerRow += LAMP.OFF;
-        }
-
-        return lowerRow;
-    };
-
-    upperMinutesRow = function(){
-        let upperMinutesRow = upperRow(11, numberOfFive(digitalTime.minutes), LAMP.YELLOW);
-        upperMinutesRow = upperMinutesRow.replace(/YYY/g, "YYR");
-        return upperMinutesRow;
-    };
-
-    upperHoursRow = function(){
-        return upperRow(4, numberOfFive(digitalTime.hours), LAMP.RED);
-    };
-
     numberOfFive = function(time){
         return parseInt(time / 5);
     };
 
-    upperRow = function(totalLamps, numberOfLampsToBeOn, lampColor){
-        let upperRow = "";
+    rowOfLamps = function(totalLamps, numberOfLampsToBeOn, lampColor){
+        let rowOfLamps = "";
         let numberOfLampsToBeOff = totalLamps - numberOfLampsToBeOn;
         for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            upperRow += lampColor;
+            rowOfLamps += lampColor;
         }
         for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
-            upperRow += LAMP.OFF;
+            rowOfLamps += LAMP.OFF;
         }
 
-        return upperRow;
+        return rowOfLamps;
     };
 };
 
