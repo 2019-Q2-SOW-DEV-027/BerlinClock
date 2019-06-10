@@ -213,6 +213,16 @@ describe("Berlin Clock Presenter", function () {
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
                 expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","Y"]);
             });
+
+            it("should display O at second 47", function(){
+                digitalTime.seconds = 47;
+                let clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","O"]);
+            });
         });
     });
 });

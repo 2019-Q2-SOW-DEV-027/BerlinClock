@@ -61,9 +61,7 @@ let ClockPresenter = function(digitalTime, clockView) {
     };
 
     secondsLamp = function(){
-        if(digitalTime.seconds % 2 === 0){
-            return "Y";
-        }
+        return digitalTime.seconds % 2 === 0 ? LAMP.YELLOW : LAMP.OFF;
     };
 };
 
