@@ -13,11 +13,7 @@ let ClockPresenter = function(digitalTime, clockView) {
                 "upperHoursRow": upperHoursRow(),
                 "secondsLamp": secondsLamp()
             };
-            clockView.displayLamps("lowerMinutesRow", berlinTime.lowerMinutesRow);
-            clockView.displayLamps("upperMinutesRow", berlinTime.upperMinutesRow);
-            clockView.displayLamps("lowerHoursRow", berlinTime.lowerHoursRow);
-            clockView.displayLamps("upperHoursRow", berlinTime.upperHoursRow);
-            clockView.displayLamps("secondsLamp", berlinTime.secondsLamp);
+            displayBerlinTime(berlinTime);
         }
     };
 
@@ -62,6 +58,12 @@ let ClockPresenter = function(digitalTime, clockView) {
 
     secondsLamp = function(){
         return digitalTime.seconds % 2 === 0 ? LAMP.YELLOW : LAMP.OFF;
+    };
+
+    displayBerlinTime = function(berlinTime){
+        for(let row in berlinTime){
+            clockView.displayLamps(row, berlinTime[row]);
+        };
     };
 };
 
