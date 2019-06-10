@@ -18,40 +18,39 @@ describe("Berlin Clock Presenter", function () {
         expect(clockView.displayError).toHaveBeenCalled();
     });
 
-    describe("LOWER MINUTES ROW", function(){
+    describe("When time is valid", function(){
 
-        it("should display OOOO at minute 0", function () {
+        beforeEach(function(){
             digitalTime.isInvalid = function(){
                 return false;
             };
-            digitalTime.minutes = 0;
             clockView.displayCurrentTimeWithTitles = function(){};
             clockView.displayLamps = function(){};
             spyOn(clockView, "displayCurrentTimeWithTitles");
             spyOn(clockView, "displayLamps");
-            clockPresenter = new ClockPresenter(digitalTime, clockView);
-
-            clockPresenter.convertToBerlinTime();
-
-            expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-            expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","OOOO");
         });
 
-        it("should display YOOO at minute 36", function () {
-            digitalTime.isInvalid = function() {
-                return false;
-            };
-            digitalTime.minutes = 36;
-            clockView.displayCurrentTimeWithTitles = function(){};
-            clockView.displayLamps = function(){};
-            spyOn(clockView, "displayCurrentTimeWithTitles");
-            spyOn(clockView, "displayLamps");
-            clockPresenter = new ClockPresenter(digitalTime, clockView);
+        describe("LOWER MINUTES ROW", function(){
 
-            clockPresenter.convertToBerlinTime();
+            it("should display OOOO at minute 0", function () {
+                digitalTime.minutes = 0;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
 
-            expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-            expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YOOO");
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","OOOO");
+            });
+
+            it("should display YOOO at minute 36", function () {
+                digitalTime.minutes = 36;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YOOO");
+            });
         });
     });
 });
