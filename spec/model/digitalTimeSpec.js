@@ -7,4 +7,12 @@ describe("Digital Time Model", function () {
 
         expect(digitalTime.isInvalid()).toBe(true);
     });
+
+    it("should notify when hours is invalid", function () {
+        let digitalTime = new DigitalTime();
+        digitalTime.minutes = 50;
+        digitalTime.hours = "";
+
+        expect(digitalTime.isInvalid()).toBe(true);
+    });
 });

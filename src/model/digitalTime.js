@@ -1,9 +1,14 @@
 let DigitalTime = function(){
     let currentDate = new Date();
     this.minutes = currentDate.getMinutes();
+    this.hours = currentDate.getHours();
 
     this.isInvalid = function(){
-        return this.minutes === undefined || this.minutes === null || this.minutes === "";
+        return isEmptyOrUndefined(this.minutes) || isEmptyOrUndefined(this.hours);
+    };
+
+    isEmptyOrUndefined = function(time){
+        return time === undefined || time === null || time === "";
     };
 };
 
