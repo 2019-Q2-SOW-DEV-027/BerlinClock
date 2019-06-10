@@ -20,17 +20,28 @@ let ClockPresenter = function(digitalTime, clockView) {
     };
 
     lowerMinutesRow = function(){
-        let lowerMinutesRow = "";
-        let numberOfLampsToBeOn = digitalTime.minutes % 5;
+        return lowerRow(moduloFive(digitalTime.minutes), LAMP.YELLOW);
+    };
+
+    lowerHoursRow = function(){
+        return lowerRow(moduloFive(digitalTime.hours), LAMP.RED);
+    };
+
+    moduloFive = function(time){
+        return time % 5;
+    };
+
+    lowerRow = function(numberOfLampsToBeOn, lampColor){
+        let lowerRow = "";
         let numberOfLampsToBeOff = 4 - numberOfLampsToBeOn;
         for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            lowerMinutesRow += LAMP.YELLOW;
+            lowerRow += lampColor;
         }
         for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
-            lowerMinutesRow += LAMP.OFF;
+            lowerRow += LAMP.OFF;
         }
 
-        return lowerMinutesRow;
+        return lowerRow;
     };
 
     upperMinutesRow = function(){
@@ -49,20 +60,6 @@ let ClockPresenter = function(digitalTime, clockView) {
         }
 
         return upperMinutesRow;
-    };
-
-    lowerHoursRow = function(){
-        let lowerHoursRow = "";
-        let numberOfLampsToBeOn = digitalTime.hours % 5;
-        let numberOfLampsToBeOff = 4 - numberOfLampsToBeOn;
-        for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            lowerHoursRow += LAMP.RED;
-        }
-        for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
-            lowerHoursRow += LAMP.OFF;
-        }
-
-        return lowerHoursRow;
     };
 
     upperHoursRow = function(){
