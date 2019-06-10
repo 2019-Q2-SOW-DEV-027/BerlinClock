@@ -20,7 +20,7 @@ describe("Berlin Clock Presenter", function () {
 
     describe("LOWER MINUTES ROW", function(){
 
-        it("should display OOOO at minutes 0", function () {
+        it("should display OOOO at minute 0", function () {
             digitalTime.isInvalid = function(){
                 return false;
             };
@@ -35,6 +35,23 @@ describe("Berlin Clock Presenter", function () {
 
             expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
             expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","OOOO");
+        });
+
+        it("should display YOOO at minute 36", function () {
+            digitalTime.isInvalid = function() {
+                return false;
+            };
+            digitalTime.minutes = 36;
+            clockView.displayCurrentTimeWithTitles = function(){};
+            clockView.displayLamps = function(){};
+            spyOn(clockView, "displayCurrentTimeWithTitles");
+            spyOn(clockView, "displayLamps");
+            clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+            clockPresenter.convertToBerlinTime();
+
+            expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+            expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YOOO");
         });
     });
 });
