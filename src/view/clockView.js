@@ -1,12 +1,14 @@
+const MESSAGE = require('../constants/messages');
+
 let ClockView = function(){
     this.displayError = function(){
-        display("error", "Invalid Time");
+        display("error", MESSAGE.ERROR);
     };
 
     this.displayCurrentTimeWithTitles = function(time){
-        display("digitalTimeTitle",  "Digital Time: ");
+        display("digitalTimeTitle", MESSAGE.DIGITAL_TIME);
         display("currentTime", currentTime(time));
-        display("berlinTimeTitle", "Berlin Time: ");
+        display("berlinTimeTitle", MESSAGE.BERLIN_TIME);
     };
 
     this.displayLamps = function(row, lamps){

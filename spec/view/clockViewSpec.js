@@ -1,6 +1,7 @@
 const ClockView = require("../../src/view/clockView");
 let jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const MESSAGE = require('../../src/constants/messages');
 
 describe("Berlin Clock View", function(){
     let clockView = new ClockView();
@@ -14,7 +15,7 @@ describe("Berlin Clock View", function(){
 
         clockView.displayError();
 
-        expect(document.getElementById("error").innerHTML).toBe("Invalid Time");
+        expect(document.getElementById("error").innerHTML).toBe(MESSAGE.ERROR);
     });
 
     it("should display current time", function(){
@@ -27,9 +28,9 @@ describe("Berlin Clock View", function(){
 
         clockView.displayCurrentTimeWithTitles(time);
 
-        expect(document.getElementById("digitalTimeTitle").innerHTML).toBe("Digital Time: ");
+        expect(document.getElementById("digitalTimeTitle").innerHTML).toBe(MESSAGE.DIGITAL_TIME);
         expect(document.getElementById("currentTime").innerHTML).toBe("6:15:23");
-        expect(document.getElementById("berlinTimeTitle").innerHTML).toBe("Berlin Time: ");
+        expect(document.getElementById("berlinTimeTitle").innerHTML).toBe(MESSAGE.BERLIN_TIME);
     });
 
     it("should display row with lamps", function(){

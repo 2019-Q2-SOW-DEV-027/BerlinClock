@@ -1,4 +1,6 @@
 const LAMP = require('../constants/lamp');
+const NUMBER = require('../constants/numbers');
+const GROUP_OF = require('../constants/groupOfLamps');
 
 let ClockPresenter = function(digitalTime, clockView) {
     this.convertToBerlinTime = function(){
@@ -18,29 +20,29 @@ let ClockPresenter = function(digitalTime, clockView) {
     };
 
     lowerMinutesRow = function(){
-        return rowOfLamps(4, moduloFive(digitalTime.minutes), LAMP.YELLOW);
+        return rowOfLamps(NUMBER.FOUR, moduloFive(digitalTime.minutes), LAMP.YELLOW);
     };
 
     upperMinutesRow = function(){
-        let upperMinutesRow = rowOfLamps(11, numberOfFive(digitalTime.minutes), LAMP.YELLOW);
+        let upperMinutesRow = rowOfLamps(NUMBER.ELEVEN, numberOfFive(digitalTime.minutes), LAMP.YELLOW);
         upperMinutesRow = changeEveryThirdLampToRed(upperMinutesRow);
         return upperMinutesRow;
     };
 
     lowerHoursRow = function(){
-        return rowOfLamps(4, moduloFive(digitalTime.hours), LAMP.RED);
+        return rowOfLamps(NUMBER.FOUR, moduloFive(digitalTime.hours), LAMP.RED);
     };
 
     upperHoursRow = function(){
-        return rowOfLamps(4, numberOfFive(digitalTime.hours), LAMP.RED);
+        return rowOfLamps(NUMBER.FOUR, numberOfFive(digitalTime.hours), LAMP.RED);
     };
 
     moduloFive = function(time){
-        return time % 5;
+        return time % NUMBER.FIVE;
     };
 
     numberOfFive = function(time){
-        return parseInt(time / 5);
+        return parseInt(time / NUMBER.FIVE);
     };
 
     rowOfLamps = function(totalLamps, numberOfLampsToBeOn, lampColor){
@@ -54,14 +56,14 @@ let ClockPresenter = function(digitalTime, clockView) {
 
     repeat = function(numberOfLampsToBeRepeated, lamp){
         let lamps = "";
-        for(let lampPosition = 0; lampPosition < numberOfLampsToBeRepeated; lampPosition++){
+        for(let lampPosition = NUMBER.ZERO; lampPosition < numberOfLampsToBeRepeated; lampPosition++){
             lamps += lamp;
         }
         return lamps;
     };
 
     changeEveryThirdLampToRed = function(rowOfLamps){
-        return rowOfLamps.replace(/YYY/g, "YYR");
+        return rowOfLamps.replace(GROUP_OF.EVERY_THREE_YELLOW_LAMPS, GROUP_OF.THIRD_LAMP_HAS_RED);
     };
 
     secondsLamp = function(){
@@ -69,7 +71,7 @@ let ClockPresenter = function(digitalTime, clockView) {
     };
 
     isEvenSeconds = function(){
-        return digitalTime.seconds % 2 === 0;
+        return digitalTime.seconds % NUMBER.TWO === NUMBER.ZERO;
     };
 
     displayBerlinTime = function(berlinTime){
