@@ -61,7 +61,11 @@ let ClockPresenter = function(digitalTime, clockView) {
     };
 
     secondsLamp = function(){
-        return digitalTime.seconds % 2 === 0 ? LAMP.YELLOW : LAMP.OFF;
+        return isEvenSeconds() ? LAMP.YELLOW : LAMP.OFF;
+    };
+
+    isEvenSeconds = function(){
+        return digitalTime.seconds % 2 === 0;
     };
 
     displayBerlinTime = function(berlinTime){
