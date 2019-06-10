@@ -224,5 +224,21 @@ describe("Berlin Clock Presenter", function () {
                 expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","O"]);
             });
         });
+
+        it("should display complete berlin clock", function(){
+            digitalTime.minutes = 32;
+            digitalTime.seconds = 10;
+            digitalTime.hours = 15;
+            let clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+            clockPresenter.convertToBerlinTime();
+
+            expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+            expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYOO"]);
+            expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYRYYROOOOO"]);
+            expect(clockView.displayLamps.calls.argsFor(2)).toEqual(["lowerHoursRow","OOOO"]);
+            expect(clockView.displayLamps.calls.argsFor(3)).toEqual(["upperHoursRow","RRRO"]);
+            expect(clockView.displayLamps.calls.argsFor(4)).toEqual(["secondsLamp","Y"]);
+        });
     });
 });
