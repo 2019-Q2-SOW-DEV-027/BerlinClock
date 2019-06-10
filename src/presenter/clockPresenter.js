@@ -23,7 +23,7 @@ let ClockPresenter = function(digitalTime, clockView) {
 
     upperMinutesRow = function(){
         let upperMinutesRow = rowOfLamps(11, numberOfFive(digitalTime.minutes), LAMP.YELLOW);
-        upperMinutesRow = upperMinutesRow.replace(/YYY/g, "YYR");
+        upperMinutesRow = changeEveryThirdLampToRed(upperMinutesRow);
         return upperMinutesRow;
     };
 
@@ -58,6 +58,10 @@ let ClockPresenter = function(digitalTime, clockView) {
             lamps += lamp;
         }
         return lamps;
+    };
+
+    changeEveryThirdLampToRed = function(rowOfLamps){
+        return rowOfLamps.replace(/YYY/g, "YYR");
     };
 
     secondsLamp = function(){
