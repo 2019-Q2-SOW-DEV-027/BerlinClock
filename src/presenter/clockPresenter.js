@@ -34,7 +34,11 @@ let ClockPresenter = function(digitalTime, clockView) {
         let numberOfLampsToBeOn = parseInt(digitalTime.minutes / 5);
         let numberOfLampsToBeOff = 11 - numberOfLampsToBeOn;
         for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
-            upperMinutesRow += LAMP.YELLOW;
+            if((lamp+1) % 3 === 0){
+                upperMinutesRow += LAMP.RED;
+            } else {
+                upperMinutesRow += LAMP.YELLOW;
+            }
         }
         for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
             upperMinutesRow += LAMP.OFF;

@@ -104,6 +104,36 @@ describe("Berlin Clock Presenter", function () {
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
                 expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYOOOOOOOOO"]);
             });
+
+            it("should display YYROOOOOOO at minute 15", function(){
+                digitalTime.minutes = 15;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYROOOOOOOO"]);
+            });
+
+            it("should display YYRYYRYOOO at minute 35", function(){
+                digitalTime.minutes = 35;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYRYYRYOOOO"]);
+            });
+
+            it("should display YYRYYRYYRYY at minute 55", function(){
+                digitalTime.minutes = 55;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYRYYRYYRYY"]);
+            });
         });
     });
 });
