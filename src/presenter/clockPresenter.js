@@ -7,9 +7,11 @@ let ClockPresenter = function(digitalTime, clockView) {
         } else {
             clockView.displayCurrentTimeWithTitles(digitalTime);
             let berlinTime = {
-                "lowerMinutesRow": lowerMinutesRow()
+                "lowerMinutesRow": lowerMinutesRow(),
+                "upperMinutesRow": upperMinutesRow()
             };
             clockView.displayLamps("lowerMinutesRow", berlinTime.lowerMinutesRow);
+            clockView.displayLamps("upperMinutesRow", berlinTime.upperMinutesRow);
         }
     };
 
@@ -25,6 +27,20 @@ let ClockPresenter = function(digitalTime, clockView) {
         }
 
         return lowerMinutesRow;
+    };
+
+    upperMinutesRow = function(){
+        let upperMinutesRow = "";
+        let numberOfLampsToBeOn = parseInt(digitalTime.minutes / 5);
+        let numberOfLampsToBeOff = 11 - numberOfLampsToBeOn;
+        for(let lamp = 0; lamp < numberOfLampsToBeOn; lamp++){
+            upperMinutesRow += LAMP.YELLOW;
+        }
+        for(let lamp = 0; lamp < numberOfLampsToBeOff; lamp++){
+            upperMinutesRow += LAMP.OFF;
+        }
+
+        return upperMinutesRow;
     };
 };
 

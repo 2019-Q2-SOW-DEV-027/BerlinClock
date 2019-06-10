@@ -39,7 +39,7 @@ describe("Berlin Clock Presenter", function () {
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","OOOO");
+                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","OOOO"]);
             });
 
             it("should display YOOO at minute 36", function () {
@@ -49,7 +49,7 @@ describe("Berlin Clock Presenter", function () {
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YOOO");
+                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YOOO"]);
             });
 
             it("should display YYOO at minute 52", function () {
@@ -59,7 +59,7 @@ describe("Berlin Clock Presenter", function () {
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YYOO");
+                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYOO"]);
             });
 
             it("should display YYYO at minute 38", function () {
@@ -69,7 +69,7 @@ describe("Berlin Clock Presenter", function () {
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YYYO");
+                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYYO"]);
             });
 
             it("should display YYYY at minute 14", function () {
@@ -79,7 +79,30 @@ describe("Berlin Clock Presenter", function () {
                 clockPresenter.convertToBerlinTime();
 
                 expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
-                expect(clockView.displayLamps).toHaveBeenCalledWith("lowerMinutesRow","YYYY");
+                expect(clockView.displayLamps.calls.argsFor(0)).toEqual(["lowerMinutesRow","YYYY"]);
+            });
+        });
+
+        describe("UPPER MINUTES ROW", function(){
+
+            it("should display OOOOOOOOOOO at minute 0", function(){
+                digitalTime.minutes = 0;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","OOOOOOOOOOO"]);
+            });
+
+            it("should display YYOOOOOOOOO at minute 10", function(){
+                digitalTime.minutes = 10;
+                clockPresenter = new ClockPresenter(digitalTime, clockView);
+
+                clockPresenter.convertToBerlinTime();
+
+                expect(clockView.displayCurrentTimeWithTitles).toHaveBeenCalledWith(digitalTime);
+                expect(clockView.displayLamps.calls.argsFor(1)).toEqual(["upperMinutesRow","YYOOOOOOOOO"]);
             });
         });
     });
